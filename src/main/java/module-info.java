@@ -10,6 +10,7 @@ module org.snakegame.snake {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens org.snakegame.snake to javafx.fxml;
     exports org.snakegame.snake;
