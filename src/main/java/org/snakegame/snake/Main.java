@@ -46,15 +46,13 @@ public class Main extends Application {
     private void createGrid() { // Creates the background grid with color
         for (int y = 0; y < GRID_SIZE; y++) { // Columns
             for (int x = 0; x < GRID_SIZE * 2; x++) { // Rows
-                // Create a Rectangle at position (x * CELL_SIZE, y * CELL_SIZE) with dimensions CELL_SIZE x CELL_SIZE
+
                 Rectangle cell = new Rectangle(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 
-
-                // Set RGB colors for alternating cells
                 if ((x + y) % 2 == 0) {
                     cell.setFill(Color.BLANCHEDALMOND);
                 } else {
-                    cell.setFill(Color.SILVER); // Set to RGB color for lighter gray (e.g., black)
+                    cell.setFill(Color.SILVER);
                 }
 
                 gridRoot.getChildren().add(cell);
@@ -96,7 +94,6 @@ public class Main extends Application {
         } while (checkCollision(posX, posY)); // Keep looping until there is no collision with the snake, when not, generate the apple
 
         // Now posX and posY are valid positions for the food
-        // Create an ImageView for the apple image
         Image appleImage = new Image("org/snakegame/snake/Images/Apple.png");
         ImageView appleImageView = new ImageView(appleImage);
         appleImageView.setFitWidth(CELL_SIZE);
@@ -314,9 +311,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) { // Starts the JavaFX thread with stage, scene, and event handlers
         gridRoot = new Group();
-        Scene scene = new Scene(gridRoot, GRID_SIZE * CELL_SIZE, GRID_SIZE * CELL_SIZE); // Root Node, Width, Height
+        Scene scene = new Scene(gridRoot, GRID_SIZE * CELL_SIZE, GRID_SIZE * CELL_SIZE);
 
-        // Load the image
         Image snakeIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/snakegame/snake/Images/Snake.png")));
         stage.getIcons().add(snakeIcon);
 
@@ -334,8 +330,8 @@ public class Main extends Application {
         startButton.translateYProperty().bind(scene.heightProperty().subtract(startButton.heightProperty()).divide(2));
 
         startButton.setOnAction(e -> {
-            gridRoot.getChildren().remove(startButton); // Remove the button from the scene
-            startGameLoop(); // Start the game loop
+            gridRoot.getChildren().remove(startButton);
+            startGameLoop();
         });
 
 
@@ -348,7 +344,6 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
 
-        // Add the button to the scene
         gridRoot.getChildren().add(startButton);
     }
 
